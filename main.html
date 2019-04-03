@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>BCN SKATE SPOTS Map</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="css/leaflet.css"/>
+<link rel="stylesheet" href="css/main.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+#main_map{height: 600px};
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<div id="DesktopSidebar" style="display: block;"> 
+  <nav id="mySidebar" class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding" 
+  style="z-index:3;width:269px; 
+         background-image:url('/indeximg/profile3degraded.jpg');
+         position:fixed!important;z-index:30;overflow:auto
+         background-position: left;
+         background-repeat: no-repeat;
+         background-size: 140%;
+         min-height: 100%;
+        ">
+    <br>
+   <!--  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">☰</a> -->
+
+    <div class="w3-container">
+      <p style="color: #fff; font-size:15px"> 
+          <hr>
+          <b>BCN SKATE SPOTS Map</b>
+          <hr>
+      </p>
+          
+    </div>
+    <br>
+    <br>
+      <!-- <p style="color: #fff; font-size:15px"> -->
+    <hr>
+          <!-- <i>Navigation Menu:</i> -->
+
+    <div class="w3-bar-block">
+      <a href="#home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> <i class="fa fa-globe"></i>  BCN SKATE Map</a> 
+      <button class="w3-bar-item w3-button w3-hover-white btn_newspot"> <i class="fa fa-map-marker"></i> ADD NEW SPOT</button>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> <i class="fa fa-info-circle"></i> About</a> 
+      <a href="#help" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> <i class="fa fa-question-circle"></i> Help</a>
+
+      <hr>
+
+    </div>
+  </nav>
+</div>
+
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-black w3-xlarge w3-padding" 
+        style=" 
+        background-image:url('/indeximg/profile3degraded-hbar.jpg');
+        position:fixed!important;z-index:2001;overflow:auto
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: 100%;
+       ">
+
+  <a href="javascript:void(0)" class="w3-button w3-teal w3-margin-right" onclick="MobileHorizontalBarClick()">☰</a>
+  <span>BCN SKATE SPOTS Map</span>
+
+  <!-- Sidebar/menu for Mobile size -->
+<div id="sideBarMobile" style="display: none;"> 
+
+    <div class="w3-bar-block" style="font-size: 15px;">
+      <hr>
+      <a href="#home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> <i class="fa fa-globe"></i>  BCN SKATE Map</a> 
+
+      <button id="NewSpot2" class="w3-bar-item w3-button w3-hover-white btn_newspot">
+      <i class="fa fa-map-marker"></i> ADD NEW SPOT</button>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> <i class="fa fa-info-circle"></i> About</a> 
+      <a href="#help" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"> <i class="fa fa-question-circle"></i> Help</a>
+
+      <hr>
+
+    </div>
+
+</div>
+</header>
+
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-right:20px">
+
+  <!-- Main content ( map ) -->
+  <div class="w3-container" style="margin-top:70px" id="home">
+    <!-- <h1 class="w3-jumbo"><b>BCN SKATE SPOTS </b></h1> -->
+    <hr>
+    <span class="w3-xxlarge">Interactive Barcelona's skate spots map</span>
+    <br>
+    <span class="w3-text-grey"><b>The spots are mantained by the skater community. You can add spots<b></span>
+
+    <hr style="width:60%; border:5px solid teal" class="w3-round">
+    
+    <!-- ALERT MESSAGE WHEN ADDING NEW SPOT IS CLICKED -->
+    <div id="NEWSPOTalert" style="display: none">
+    <span class="w3-large" style="color: red"> <i class="fa fa-exclamation-triangle"></i>Click on the map to ADD a NEW SPOT <i class="fa fa-exclamation-triangle"></i></span>
+    </div>
+
+    <div id="main_map" style="z-index:1">
+
+    </div>
+  </div>
+  <!-- About information -->
+  <div class="w3-container" id="about" style="margin-top:100px">
+    <!-- <h1 class="w3-xxxlarge w3-text-red"><b>About</b></h1> -->
+    <span class="w3-xxlarge">About</span>
+    <hr style="width:50px; border:5px solid teal" class="w3-round">
+    <p style="font-weight: normal; color: grey" ><i style="color: teal;">BCN SKATE SPOTS interactive map</i> is a website aimed for the traditionaly disregarded skater community in Barcelona, skateboarding's meca.
+    <br>
+    <br>
+    Our goal is to provide skaters with the necessary tools to annonimously search for new places (spots) to skate nearby them. What's more, <i style="color: teal;">users can open an interactive panoramic view of the spot</i>.
+    <br>
+    <br>
+
+    In addition, <i style="color: teal;">the map is mantained by the skater community</i>. Thefore, users can interact with each other by contributing to the site in the following fashion:
+    <br>
+    <ul style="font-weight: normal; color: grey">
+      <li>By <i style="color: teal;">evaluating with Like/Dislike</i> the current spots on the map, which can act as a quality guideline while also filtering by <i style="color: teal;">automatically deleting spots with bad user reviews</i>. (When Dislikes - Likes > 5)</li>
+      <li>By <i style="color: teal;">sharing/creating/uploading NEW SPOTS</i> with their own position, description and panoramic image to the server's REDIS database.</li>
+    </ul>
+
+
+
+
+    <br>
+    <span class="w3-large">Authors</span>
+    <br>
+
+
+      <ul style="font-weight: normal; color: grey">
+        <li><i style="color: teal;">Lie Jin</i>. NIA 182517</li>
+
+        <li><i style="color: teal;">Pol Valls</i>. NIA 184218</li>
+      </ul>
+
+    <p style="font-weight: normal; color: grey" >
+
+      BCN SKATE SPOTS was created as the final project for the subject <i>ECV (Entorn de Comunicació Virtual)</i> on the 4th year of our degree in <i>Audiovisual Systems Engineering</i> at <i>Univerity Pompeu Fabra</i>.
+      <br>
+      The website is released under creative commons and the source code is available on Github (link).
+    </p>
+
+
+     <span class="w3-large">Acknowledgments & Collaborators</span>
+
+      <ul style="font-weight: normal; color: grey">
+
+        <li> Leaflet Javascript open source library of intercavtive maps. <a href="https://leafletjs.com/">(Official Leaflet site)</a>.
+
+        <li> Sean Coyne for the Pano-View jQuery on this <a href="https://github.com/seancoyne/pano">GitHub repository</a>.
+
+        <li> <i style="color: teal;"></i> <a href="https://www.w3schools.com/default.asp">w3school</a> stylesheets of css.</li>
+
+        <li>Special thanks to our professor<i style="color: teal;"><a href="https://www.dtic.upf.edu/~jagenjo/"> Javier Agenjo</a></i>.</li>
+      </ul>
+    </p>
+
+  </div>
+  <!-- Help information -->
+  <div class="w3-container" id="help" style="margin-top:100px">
+    <!-- <h1 class="w3-xxxlarge w3-text-red"><b>Help</b></h1> -->
+    <span class="w3-xxlarge">Help</span>
+    <hr style="width:50px;border:5px solid teal" class="w3-round">
+    <p style="font-weight: normal; color: grey"> To add a new spot on the map:
+    <br>
+    <ol style="font-weight: normal; color: grey">
+      <li>Click on "ADD NEW SPOT" on the navbar menu on the left (top if you are on a small device). </li>
+
+      <li> Zoom-in on the map and click where you want to place the new spot marker.</li>
+
+      <li> Fill the form with the SpotName, SpotDescription, choose a picture to upload and click send.</li>
+
+      <li> Voilà! </li>
+
+      </p>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+<!-- The Modal -->
+  <div id="PanoModalBox" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+  <!--     <div id="panoJQuery"> </div> -->
+
+        <div id="myPano" class="pano">
+          <div class="controls">
+            <a href="#" class="left">&laquo;</a>
+            <a href="#" class="right">&raquo;</a>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+
+<!--Modal box 2 -->
+<div id="SetNewBox" class="modal newspot">
+
+  <div class="modal-content newspot_content">
+    <span class="close">&times;</span>
+    <br>
+    <h1>Creating New Spot</h1>
+
+
+    <form name="NS" action="fileupload" method="post" enctype="multipart/form-data">
+        Spot Name: <input type="text" name="Name" required><br>
+        Spot Position: <input type="text" name="Pos"><br>
+        Spot Description: <input type="text" name="Desc" required><br>
+        Spot Votes: <input type="text" name="Votes"><br>
+        Spot Photo: <input type="file" name="filetoupload" accept="image/*" required><br>
+        <input type="submit" value="Upload" id="SENDSPOT">
+    </form>
+  </div>
+</div>
+
+
+</div>
+
+
+
+<!-- End page content -->
+<script type="text/javascript" src="leaflet/leaflet.js"></script>
+<script type="text/javascript" src="js/client.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script src="//code.jquery.com/jquery-1.8.3.js"></script>
+<script src="js/jquery.pano.js"></script>
+
+</body>
+</html>

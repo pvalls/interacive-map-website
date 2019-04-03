@@ -1,0 +1,160 @@
+/*MAIN.CSS*/
+
+/*FOR MODAL BOXES*/
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2000; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Full width */
+  height: 80%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #000000FF;
+}
+
+.newspot{
+  padding: initial;
+  width: 50%;
+  height: 520px;
+  position: absolute;
+  background-color: #000000FF;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit], .btn_pano {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover, .btn_pano:hover {
+  background-color: #45a049;
+}
+form{
+  font-size: 12px;
+}
+input[type=file]{
+  padding: 12px 20px;
+  margin: 4px 0;
+}
+p{
+  font-size: 13px;
+}
+
+/*.btn_pano {
+
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}*/
+
+.btn_vote{
+  width: 45%;
+  color: white;
+  padding: 5px;
+  margin: 8px 1px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.pos{
+  background-color: #4CAF50;
+}
+
+.neg{
+  background-color: #7d3f48;
+}
+
+/*.btn_pano:hover {
+  background-color: #45a049;
+}*/
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 2px;
+  border: 5px solid #888;
+  width: 100%;
+  height: 100%;
+
+}
+
+.newspot_content{
+  padding: 2px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/*CSS  PANO VIEW*/
+.pano {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  cursor: move;
+}
+.pano .controls {
+  position: relative;
+  top: 40%;
+}
+.pano .controls a {
+  position: absolute;
+  display: inline-block;
+  text-decoration: none;
+  color: #4CAF50;;
+  font-size: 3em;
+  width: 20px;
+  height: 20px;
+}
+.pano .controls a.left {
+  left: 20px;
+}
+.pano .controls a.right {
+  right: 20px;
+}
+.pano.moving .controls a {
+  opacity: 0.4;
+  color: #eee;
+}
+
