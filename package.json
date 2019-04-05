@@ -1,0 +1,25 @@
+{
+  "name": "interacive-map-website",
+  "version": "1.0.0",
+  "description": "This is a fully working modern responsive website including the whole client & server side (HTML, css, Javascript & node.js with a REDIS database). The aim of the website is to find and create spots/markers/places on an interactive map (based on Leaflet) with pop-up desciptions and a panoramic image view as well as some user review options such as LIKE/DISLIKE.",
+  "main": "MainServer.js",
+  "dependencies": {
+    "formidable": "^1.2.1",
+    "redis": "^2.8.0",
+    "websocket": "^1.0.28"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvalls/interacive-map-website.git"
+  },
+  "author": "Lie Jin, Pol Valls",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pvalls/interacive-map-website/issues"
+  },
+  "homepage": "https://github.com/pvalls/interacive-map-website#readme"
+}
