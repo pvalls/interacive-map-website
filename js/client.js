@@ -126,8 +126,8 @@ SPOTTER.prototype.CreatePopUp = function(name,imgpath,desc,votes,buttons){
 
 //CONENCTING THE WEBSOCKET SERVER
 var s = new SPOTTER();
-//client.wsconnect("localhost:9026");
-s.connect("ecv-etic.upf.edu:9026");
+s.connect("localhost:9026");
+// s.connect("ecv-etic.upf.edu:9026");
 
 //Message received from the ws server
 //Here we receive the data of every spot - Create Spot(marker) and add it to the array
